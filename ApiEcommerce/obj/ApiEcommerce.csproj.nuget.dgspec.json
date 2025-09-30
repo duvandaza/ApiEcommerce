@@ -1,25 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\donet\\ApiEcommerce\\ApiEcommerce\\ApiEcommerce.csproj": {}
+    "c:\\Users\\dudaza\\Documents\\repo capacitacion\\ApiEcommerce\\ApiEcommerce\\ApiEcommerce.csproj": {}
   },
   "projects": {
-    "D:\\Project\\donet\\ApiEcommerce\\ApiEcommerce\\ApiEcommerce.csproj": {
+    "c:\\Users\\dudaza\\Documents\\repo capacitacion\\ApiEcommerce\\ApiEcommerce\\ApiEcommerce.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\donet\\ApiEcommerce\\ApiEcommerce\\ApiEcommerce.csproj",
+        "projectUniqueName": "c:\\Users\\dudaza\\Documents\\repo capacitacion\\ApiEcommerce\\ApiEcommerce\\ApiEcommerce.csproj",
         "projectName": "ApiEcommerce",
-        "projectPath": "D:\\Project\\donet\\ApiEcommerce\\ApiEcommerce\\ApiEcommerce.csproj",
-        "packagesPath": "C:\\Users\\dandr\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\donet\\ApiEcommerce\\ApiEcommerce\\obj\\",
+        "projectPath": "c:\\Users\\dudaza\\Documents\\repo capacitacion\\ApiEcommerce\\ApiEcommerce\\ApiEcommerce.csproj",
+        "packagesPath": "C:\\Users\\dudaza\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\dudaza\\Documents\\repo capacitacion\\ApiEcommerce\\ApiEcommerce\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\dandr\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\dudaza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,7 +43,8 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -87,7 +94,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

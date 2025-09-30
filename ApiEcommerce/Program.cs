@@ -10,6 +10,7 @@ builder.Services.AddDbContext<AplicationDbContext>(
     options => options.UseSqlServer(dbConnectionString)
 );
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddMaps(typeof(Program).Assembly);
