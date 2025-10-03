@@ -110,7 +110,7 @@ namespace ApiEcommerce.Controllers
             return Ok(productsDto);
         }
 
-        [HttpGet("buyProduct/{name}/{quantity:int}", Name = "BuyProduct")]
+        [HttpPatch("buyProduct/{name}/{quantity:int}", Name = "BuyProduct")]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -131,8 +131,59 @@ namespace ApiEcommerce.Controllers
             var units = quantity == 1 ? "unidad" : "unidades";
             return Ok($"Se compro {quantity} {units} del producto '{name}'");
         }
-        
 
+        [HttpPut("{productId:int}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult UpdatePoduct(int productId, [FromBody] UpdateProductDto updateProductDto)
+        {
+            if (updateProductDto == null) return BadRequest(ModelState);
+            if (!_productRepository.ProductExists(productId))
+            {
+                ModelState.AddModelError("CustomErro", "El producto no existe");
+                return BadRequest(ModelState);
+            }
+            if (!_categoryrepository.CategoryExists(updateProductDto.CategoryId))
+            {
+                ModelState.AddModelError("CustomErro", $"La categoria no exite");
+                return BadRequest(ModelState);
+            }
+            var product = _mapper.Map<Product>(updateProductDto);
+            product.ProductId = productId;
+            if (!_productRepository.UpdateProductDto(product))
+            {
+                ModelState.AddModelError("CustomErro", $"Algo salio mal al actualizar el registro {product.Name}");
+                return StatusCode(500, ModelState);
+            }
+            return NoContent();
+        }
+        
+        [HttpDelete("{productId:int}", Name = "DeleteProduct")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public IActionResult DeleteProduct(int productId)
+        {
+            if (productId == 0)
+            {
+                return BadRequest(ModelState);
+            }
+            var product = _productRepository.GetProduct(productId);
+            if (product == null)
+            {
+                return NotFound($"El producto con el id ${productId} no existe");
+            }
+            if (!_productRepository.DeleteProductDto(product))
+            {
+                ModelState.AddModelError("CustomError", $"Algo salio mal al eliminar el producto {product.Name}");
+
+            }
+            return NoContent();
+        }
 
     }
 }
