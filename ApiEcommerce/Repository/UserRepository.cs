@@ -89,7 +89,7 @@ public class UserRepository : IUserRepository
             User = new UserRegisterDto()
             {
                 Username = user.Username,
-                Name = user.Name,
+                Name = user.Name ?? string.Empty,
                 Role = user.Role,
                 Password = user.Password ?? ""
             },

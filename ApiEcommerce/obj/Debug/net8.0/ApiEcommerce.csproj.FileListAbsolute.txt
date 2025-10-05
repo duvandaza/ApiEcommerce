@@ -342,3 +342,5 @@ C:\Users\dudaza\Documents\repo capacitacion\ApiEcommerce\ApiEcommerce\obj\Debug\
 D:\Project\donet\ApiEcommerce\ApiEcommerce\obj\Debug\net8.0\ApiEcommerce.sourcelink.json
 C:\Users\dudaza\Documents\repo capacitacion\ApiEcommerce\apiecommerce\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\dudaza\Documents\repo capacitacion\ApiEcommerce\apiecommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Project\donet\ApiEcommerce\ApiEcommerce\bin\Debug\net8.0\BCrypt.Net-Next.dll
+D:\Project\donet\ApiEcommerce\ApiEcommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
