@@ -344,3 +344,7 @@ C:\Users\dudaza\Documents\repo capacitacion\ApiEcommerce\apiecommerce\bin\Debug\
 C:\Users\dudaza\Documents\repo capacitacion\ApiEcommerce\apiecommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 D:\Project\donet\ApiEcommerce\ApiEcommerce\bin\Debug\net8.0\BCrypt.Net-Next.dll
 D:\Project\donet\ApiEcommerce\ApiEcommerce\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Project\donet\ApiEcommerce\ApiEcommerce\bin\Debug\net8.0\Asp.Versioning.Abstractions.dll
+D:\Project\donet\ApiEcommerce\ApiEcommerce\bin\Debug\net8.0\Asp.Versioning.Http.dll
+D:\Project\donet\ApiEcommerce\ApiEcommerce\bin\Debug\net8.0\Asp.Versioning.Mvc.dll
+D:\Project\donet\ApiEcommerce\ApiEcommerce\bin\Debug\net8.0\Asp.Versioning.Mvc.ApiExplorer.dll
