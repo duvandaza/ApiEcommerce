@@ -8,6 +8,10 @@ public interface IProductRepository
 {
     ICollection<Product> GetProducts();
 
+    ICollection<Product> GetProductsInPage(int pageNumber, int pageSize);
+
+    int GetTotalProducts();
+
     ICollection<Product> GetProductsForCategory(int categoryId);
 
     ICollection<Product> SearchProducts(string name);
