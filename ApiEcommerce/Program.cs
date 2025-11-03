@@ -28,6 +28,7 @@ builder.Services.AddResponseCaching(options =>
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddAutoMapper(cfg =>
 {
   cfg.AddMaps(typeof(Program).Assembly);
@@ -167,13 +168,15 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(options =>
-  {
-    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    options.SwaggerEndpoint("/swagger/v2/swagger.json", "v2");
-  });
+  app.UseSwagger();
+  app.UseSwaggerUI(options =>
+{
+  options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+  options.SwaggerEndpoint("/swagger/v2/swagger.json", "v2");
+});
 }
+
+app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 

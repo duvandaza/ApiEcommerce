@@ -13,6 +13,8 @@ public class ProductDto
     public decimal Price { get; set; }
     public string ImgUrl { get; set; } = string.Empty;
 
+    public string? ImgUrlLocal { get; set; }
+
     public string SKU { get; set; } = string.Empty;
 
     public int Stock { get; set; }

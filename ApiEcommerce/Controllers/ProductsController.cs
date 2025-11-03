@@ -3,7 +3,6 @@ using ApiEcommerce.Models.Dtos;
 using ApiEcommerce.Repository.IRepository;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiEcommerce.Controllers
@@ -15,13 +14,18 @@ namespace ApiEcommerce.Controllers
     {
         private readonly IProductRepository _productRepository;
         private readonly ICategoryRepository _categoryrepository;
+        private readonly IFileService _fileService;
         private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository productRepository, IMapper mapper, ICategoryRepository categoryRepository)
+        public ProductsController(IProductRepository productRepository, 
+            IMapper mapper,
+            ICategoryRepository categoryRepository,
+            IFileService fileService)
         {
             _productRepository = productRepository;
             _mapper = mapper;
             _categoryrepository = categoryRepository;
+            _fileService = fileService;
         }
 
         [AllowAnonymous]
@@ -58,7 +62,7 @@ namespace ApiEcommerce.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult CreatePoduct([FromBody] CreateProductDto createProductDto)
+        public async Task<IActionResult> CreatePoductAsync([FromForm] CreateProductDto createProductDto)
         {
             if (createProductDto == null) return BadRequest(ModelState);
             if (_productRepository.ProductExists(createProductDto.Name))
@@ -72,6 +76,11 @@ namespace ApiEcommerce.Controllers
                 return BadRequest(ModelState);
             }
             var product = _mapper.Map<Product>(createProductDto);
+            var (imageUrl, imgUrlLocal) = await _fileService.SaveProductImageAsync(
+                createProductDto.Image, product.ProductId.ToString(), HttpContext.Request, "ProductsImages"
+            );
+            product.ImgUrl = imageUrl;
+            product.ImgUrlLocal = imgUrlLocal;
             if (!_productRepository.CreateProduct(product))
             {
                 ModelState.AddModelError("CustomErro", $"Algo salio mal al guardar el registro {product.Name}");
@@ -142,7 +151,7 @@ namespace ApiEcommerce.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public IActionResult UpdatePoduct(int productId, [FromBody] UpdateProductDto updateProductDto)
+        public async Task<IActionResult> UpdatePoductAsync(int productId, [FromBody] UpdateProductDto updateProductDto)
         {
             if (updateProductDto == null) return BadRequest(ModelState);
             if (!_productRepository.ProductExists(productId))
@@ -157,6 +166,11 @@ namespace ApiEcommerce.Controllers
             }
             var product = _mapper.Map<Product>(updateProductDto);
             product.ProductId = productId;
+            var (imageUrl, imgUrlLocal) = await _fileService.SaveProductImageAsync(
+                updateProductDto.Image, product.ProductId.ToString(), HttpContext.Request, "ProductsImages"
+            );
+            product.ImgUrl = imageUrl;
+            product.ImgUrlLocal = imgUrlLocal;
             if (!_productRepository.UpdateProductDto(product))
             {
                 ModelState.AddModelError("CustomErro", $"Algo salio mal al actualizar el registro {product.Name}");
